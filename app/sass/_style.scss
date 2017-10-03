@@ -1,0 +1,344 @@
+@import "settings";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_clearfix";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_image";
+
+// fonts
+// $Arial: 'Arial', sans-serif;
+// $Rye: 'Rye', cursive;
+
+//оформление надписей
+//@mixin font-type ($color, $font-family, $font-size, $font-weight, $line-height, $letter-spacing)
+
+// base colors
+$black: #000000;
+$blue: #5DA7DF;
+$grey-blue: #D9E6EE;
+$white: #ffffff;
+$grey: #F5F5F5;
+$green: #008000;
+$red: #FF0000;
+
+//project colors
+$color-bg-light: $white;
+$color-bg: $grey;
+$color-menu-active: $grey-blue;
+$color-link: $blue;
+$color-text-dark: $black;
+$color-up: $red;
+$color-down: $green;
+
+
+//COMMON
+// preloader
+.preloader {}
+// buttons
+.button {
+    &:hover {text-decoration: none;}
+    &:active {}
+    &:after {}
+}
+a {
+	text-decoration: none;
+	&:hover {text-decoration: underline;}
+	&:active {}
+}
+.hidden-sm {
+    @include respond-to(md) {display: none;};
+}
+.visible-sm {
+    display: none;
+
+    @include respond-to(md) {display: block;};
+}
+.clearfix {@include clearfix();}
+
+//GLOBAL
+// application
+.app {
+    @include font-type ($color-text-dark, $Arial, 14px, 400, 22px);
+        text-transform: uppercase;
+    position: relative;
+}
+
+//SECTION
+// header
+.header {
+    @include respond-to(sm) {text-align: center;}
+
+    p.brand {
+        @include font-type ($color-text-dark, $Rye, 20px, 400, 62px);
+            text-transform: uppercase; letter-spacing: 1.2px;
+
+        @include respond-to(md) {font-size: 18px;}
+    }
+    ul.navigation {
+        li {
+            display: inline-block; float: left;
+
+            @include respond-to(sm) {float: none;}
+
+            a {
+                color: $color-text-dark;
+                display: block; padding: 20px 10px;
+                transition: background-color .2s linear;
+
+                @include respond-to(sm) {padding: 7px;}
+
+                &:hover {
+                    text-decoration: none;
+                    background-color: $color-menu-active;
+                }
+
+                &.active {background-color: $color-menu-active;}
+            }
+        }
+    }
+    a.profile {
+        color: $color-link; line-height: 62px;
+        float: right;
+
+        @include respond-to(sm) {float: none;}
+    }
+}
+// content
+.content {
+    text-transform: uppercase;
+    padding: 15px 0;
+    background-color: $color-bg;
+        box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.3);
+
+    .filtr {line-height: 40px;}
+
+    h1 {
+        font-size: 16px; line-height: 40px;
+        margin-bottom: 10px;
+
+        @include respond-to(sm) {line-height: 25px; text-align: center;}
+    }
+    p.find {line-height: 40px; text-align: right;}
+
+    .item {
+        text-transform: none;
+        margin-bottom: 15px;
+        border: 1px transparent solid;
+        transition: border-color .2s linear;
+
+        &:hover {border-color: $color-down;}
+
+        &-photo {
+            position: relative;
+
+            a {
+                display: block;
+
+                .img-responsive {
+                    @include img-responsive();
+                    @include respond-to(sm) {display: block; width: 100%};
+                }
+
+                &.like {
+                    min-height: auto;
+                    position: absolute; top: 10px; right: 10px;
+
+                    i {
+                        transition: color .2s linear;
+
+                        &.fa-heart {color: rgba(255, 0, 0, .8);}
+                        &.fa-heart-o {color: rgba(255, 255, 255, .9);}
+                    }
+
+                    &:hover {
+                        i.fa-heart {color: rgba(255, 0, 0, 1);}
+                        i.fa-heart-o {color: rgba(255, 255, 255, 1);}
+                    }
+                }
+            }
+            span {
+                position: absolute; bottom: 10px; left: 10px;
+                background-color: $color-bg-light; border-radius: 4px;
+
+                &.badge {
+                    color: $color-bg-light;
+                    padding: 0px 5px;
+                    top: 10px; bottom: auto;
+                }
+                &.price {
+                    @include font-type ($color-text-dark, $Arial, 16px, 700, 14px);
+                    padding: 5px 10px;
+
+                    @include respond-to(lg) {
+                        font-size: 14px;
+                        padding: 5px;
+                    };
+
+                    i {color: #000000; margin-right: 5px;}
+                }
+            }
+        }
+        &.green {
+            span.badge {background-color: $color-down;}
+            span i.fa {color: $color-down;}
+        }
+        &.red {
+            span.badge {background-color: $color-up;}
+            span i.fa {color: $color-up;}
+        }
+        &-info {
+            padding: 7px;
+            background-color: $color-bg-light;
+
+            @include respond-to(lg) {font-size: 13px;};
+
+            h4 {
+                font-weight: bold;
+                padding: 5px;
+
+                a.name {
+                    color: $color-text-dark;
+
+                    span {}
+                }
+            }
+            ul.characteristics {
+                font-size: 13px;
+                padding: 5px 0;
+
+                @include respond-to(lg) {font-size: 12px;};
+
+                li {
+                    display: inline-block; padding: 0 5px;
+                    border-left: 1px $grey-blue solid;
+
+                    &:first-child {border-left: none;}
+                }
+            }
+        }
+    }
+}
+
+// footer
+.footer {
+    padding: 25px 0;
+
+    @include respond-to(sm) {
+        text-align: center;
+        padding: 20px 0 10px;
+    }
+
+    p.brand {
+        text-transform: none;
+
+        small {}
+    }
+    a.map {
+        color: $color-text-dark; font-size: 12px;
+            text-transform: none;
+    }
+    ul {
+        @include respond-to(sm) {margin-top: 10px;}
+
+        li, a {display: inline-block;}
+
+        &.navigation {
+            text-align: center;
+
+            li {
+                margin-left: -4px;
+
+                &:first-child {margin-left: 0;}
+
+                a {
+                    color: $color-text-dark;
+                    padding: 15px;
+                    background-color: $color-menu-active;
+                    transition: background-color .2s linear;
+
+                    @include respond-to(sm) {padding: 7px;}
+
+                    &:hover {
+                        text-decoration: none;
+                        background-color: $color-bg;
+                    }
+                }
+            }
+        }
+        &.soc {
+            text-align: right;
+
+            @include respond-to(sm) {text-align: center;}
+
+            li {
+                padding: 0 13px;
+
+                a {
+                    i {
+                        color: #C5C5C5; line-height: 50px;
+                        transition: color .2s linear;
+                    }
+                    &:hover {
+                        i {color: $color-text-dark;}
+                    }
+                }
+            }
+        }
+    }
+}
+.popup {
+    opacity: 0; visibility: hidden;
+    position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.5);
+    transition: opacity .2s linear;
+
+    &:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .wr-popup {
+        width: 300px; margin: 75px auto; padding: 20px;
+        position: relative;
+        background: $color-bg-light; border-radius: 5px;
+
+        h4 {
+            font-size: 20px; text-align: center;
+            margin-bottom: 10px;
+        }
+        .close {
+            font-size: 24px; font-weight: 700;
+                text-decoration: none; opacity: .5;
+            padding: 5px 10px;
+            position: absolute; top: 0; right: 0;
+            transition: opacity .2s linear;
+
+            &:hover {opacity: 1;}
+        }
+        .content-popup {
+            text-transform: none;
+            background-color: $color-bg; border-radius: 5px;
+
+            form {
+                padding: 15px;
+
+                label {}
+                input {
+                    display: block; width: 100%; height: 30px;
+                        margin: 3px 0 10px; padding: 5px;
+                    border: 1px solid #d8d8d8; border-radius: 2px;
+                }
+                button {
+                    color: $color-bg-light; line-height: 30px;
+                        font-size: 16px; cursor: pointer;
+                    display: block; margin: 10px auto; width: 120px; height: 35px;
+                    background-color: $color-down; border: 0; border-radius: 5px;
+                    transition: background-color .2s linear;
+
+                    &:hover {background-color: $color-link;}
+                }
+                a {
+                    text-align: center;
+                    display: block;
+                }
+            }
+        }
+    }
+}

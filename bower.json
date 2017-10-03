@@ -1,0 +1,20 @@
+{
+  "name": "IncubatorRublevka",
+  "description": "IncubatorRublevka Adebos",
+  "main": "index.js",
+  "authors": [
+    "adebos"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
+    "reset-css": "^2.2.1",
+    "components-font-awesome": "^4.7.0"
+  }
+}
